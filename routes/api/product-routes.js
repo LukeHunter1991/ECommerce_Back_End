@@ -7,14 +7,16 @@ const { findAll } = require('../../models/ProductTag');
 // get all products
 router.get('/', async (_req, res) => {
   // find all products
-  // be sure to include its associated Category and Tag data
-  // { model: Tag, through: ProductTag }
   try {
+    // Returns all data from product, category, and tag tables. 
     const productData = await Product.findAll({
+      // Can include Category and Tag tables as relationship is established in respective models and index.js file.
       include: [Category, Tag],
     });
+    // Return product data
     res.json(productData);
   } catch (err) {
+    // If above fails, return generic error and confirm not succesful.
     res.sendStatus(400).json({
       success: false
     })
@@ -24,13 +26,16 @@ router.get('/', async (_req, res) => {
 // get one product
 router.get('/:id', async (req, res) => {
   // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
   try {
+    // Select by primary key based on id parameter provided in request.
     const productData = await Product.findByPk(req.params.id, {
+      // Can include Category and Tag tables as relationship is established in respective models and index.js file.
       include: [Category, Tag],
     });
+    // Return specified product data
     res.json(productData);
   } catch (err) {
+    // If above fails, return generic error and confirm not succesful.
     res.sendStatus(400).json({
       success: false
     })
@@ -117,13 +122,17 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
+    // Use Destroy method provided by Sequilize 
     const deletedVal = await Product.destroy({
+      // Delete row where ID matches provided ID parameter
       where: {
         id: req.params.id
       }
     })
+    // Returns an array with the number of rows deleted.
     res.json(deletedVal);
   } catch (err) {
+    // If above fails, return generic error and confirm not succesful.
     res.sendStatus(400).json({
       success: false
     })
