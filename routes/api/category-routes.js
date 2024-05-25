@@ -7,12 +7,12 @@ router.get('/', async (req, res) => {
   // find all categories
   try {
     // Returns all data from category, product tables. 
-    const cats = await Category.findAll({
+    const catData = await Category.findAll({
       include: [Product],
       // Orders by id so that order remains consistant as rows are added/removed/updated
       order: [['id', 'ASC']],
     })
-    res.json(cats);
+    res.json(catData);
   } catch (err) {
     res.sendStatus(400).json({
       success: false
@@ -24,11 +24,11 @@ router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   try {
     // Select from Category table left outer join Product table by primary key based on id parameter provided in request.
-    const cats = await Category.findByPk(req.params.id, {
+    const catData = await Category.findByPk(req.params.id, {
       include: [Product],
     })
     // Return specified category data
-    res.json(cats);
+    res.json(catData);
   } catch (err) {
     // If above fails, return generic error and confirm not succesful.
     res.sendStatus(400).json({
@@ -57,13 +57,13 @@ router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
     // Use update method provided by Sequilize to update Category table WHERE id = req.params.id
-    const newCat = await Category.update(req.body, {
+    const catData = await Category.update(req.body, {
       where: {
         id: req.params.id
       }
     })
     // Returns an array with the number of rows updated.
-    res.json(newCat);
+    res.json(catData);
   } catch (err) {
     // If above fails, return generic error and confirm not succesful.
     res.sendStatus(400).json({
