@@ -40,8 +40,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new category
   try {
-    // Use create method provided by Sequilize to INSERT new category into Category table.
+    // Use create method provided by Sequilize to INSERT new tag into category table.
     const newCat = await Category.create(req.body);
+    // Returns tag that was created.
     res.json(newCat);
 
   } catch (err) {
@@ -50,7 +51,6 @@ router.post('/', async (req, res) => {
       success: false
     });
   }
-
 });
 
 router.put('/:id', async (req, res) => {
@@ -59,8 +59,8 @@ router.put('/:id', async (req, res) => {
     // Use update method provided by Sequilize to update Category table WHERE id = req.params.id
     const catData = await Category.update(req.body, {
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
     // Returns an array with the number of rows updated.
     res.json(catData);
@@ -79,8 +79,8 @@ router.delete('/:id', async (req, res) => {
     const deletedVal = await Category.destroy({
       // Delete row where ID matches provided ID parameter
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
     // Returns an array with the number of rows deleted.
     res.json(deletedVal);
