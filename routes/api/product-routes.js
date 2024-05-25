@@ -12,6 +12,8 @@ router.get('/', async (_req, res) => {
     const productData = await Product.findAll({
       // Can include Category and Tag tables as relationship is established in respective models and index.js file.
       include: [Category, Tag],
+      // Orders by id so that order remains consistant as rows are added/removed/updated
+      order: [['id', 'ASC']],
     });
     // Return product data
     res.json(productData);
