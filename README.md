@@ -1,6 +1,8 @@
 # ECommerce Back End
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
+https://www.loom.com/share/6c94d6bea33c406da5841bc68b7b7825
+
  ## Description
  In this program I built the back end to an E Commerce platform. This allows a user to run Get, Post, Put, and Delete routes using insomnia. This will allow the user to query the databse which is made up of tables for Products, Categories, Tags, and Product Tags. I did this to gain a deeper understanding of Sequelize including models, and associations between tables.
 
