@@ -6,7 +6,7 @@ class Category extends Model { }
 
 Category.init(
   {
-    // Although sequelize will auto generate an ID we have declared it below sot hat we can specify our own fields.
+    // Although sequelize will auto generate an ID we have declared it below so that we can specify our own fields.
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
